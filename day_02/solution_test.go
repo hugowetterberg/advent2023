@@ -3,7 +3,7 @@ package day_02_test
 import (
 	"io"
 	"log/slog"
-	"strings"
+	"os"
 	"testing"
 
 	"github.com/hugowetterberg/advent2023"
@@ -19,18 +19,39 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 type testCase struct {
 	Fn     func(logger *slog.Logger, r io.Reader) (*advent2023.IntegerResult, error)
+	Input  func() io.Reader
 	Expect int
 }
 
 func TestParts(t *testing.T) {
+	fullInput, err := os.ReadFile("input.txt")
+	if err != nil {
+		t.Fatalf("failed to read input file: %v", err)
+	}
+
+	sampleInputReader := internal.ByteReaderFunc([]byte(sampleInput))
+	fullInputReader := internal.ByteReaderFunc(fullInput)
+
 	parts := map[string]testCase{
+		"OneSample": {
+			Fn:     day_02.PartOne,
+			Input:  sampleInputReader,
+			Expect: 8,
+		},
 		"One": {
 			Fn:     day_02.PartOne,
-			Expect: 8,
+			Input:  fullInputReader,
+			Expect: 2285,
+		},
+		"TwoSample": {
+			Fn:     day_02.PartTwo,
+			Input:  sampleInputReader,
+			Expect: 2286,
 		},
 		"Two": {
 			Fn:     day_02.PartTwo,
-			Expect: 2286,
+			Input:  fullInputReader,
+			Expect: 77021,
 		},
 	}
 
@@ -38,7 +59,7 @@ func TestParts(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			logger := slog.New(internal.NewLogHandler(t, slog.LevelWarn))
 
-			res, err := c.Fn(logger, strings.NewReader(sampleInput))
+			res, err := c.Fn(logger, c.Input())
 			if err != nil {
 				t.Fatal(err.Error())
 			}
