@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+
+	"github.com/hugowetterberg/advent2023"
 )
 
 const (
@@ -13,7 +15,7 @@ const (
 	asciiNine = 57
 )
 
-func PartOne(logger *slog.Logger, r io.Reader) (int, error) {
+func PartOne(logger *slog.Logger, r io.Reader) (*advent2023.IntegerResult, error) {
 	lines := bufio.NewScanner(r)
 
 	var (
@@ -53,13 +55,16 @@ func PartOne(logger *slog.Logger, r io.Reader) (int, error) {
 
 	err := lines.Err()
 	if err != nil {
-		return 0, fmt.Errorf("read input: %w", err)
+		return nil, fmt.Errorf("read input: %w", err)
 	}
 
-	return total, nil
+	return &advent2023.IntegerResult{
+		Description: "Calibration value sum",
+		N:           total,
+	}, nil
 }
 
-func PartTwo(logger *slog.Logger, r io.Reader) (int, error) {
+func PartTwo(logger *slog.Logger, r io.Reader) (*advent2023.IntegerResult, error) {
 	lines := bufio.NewScanner(r)
 
 	var (
@@ -100,10 +105,13 @@ func PartTwo(logger *slog.Logger, r io.Reader) (int, error) {
 
 	err := lines.Err()
 	if err != nil {
-		return 0, fmt.Errorf("read input: %w", err)
+		return nil, fmt.Errorf("read input: %w", err)
 	}
 
-	return total, nil
+	return &advent2023.IntegerResult{
+		Description: "Calibration value sum",
+		N:           total,
+	}, nil
 }
 
 var numWords = map[int][]byte{

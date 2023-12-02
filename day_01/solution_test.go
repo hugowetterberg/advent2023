@@ -17,13 +17,13 @@ pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet`)
 
-	n, err := day_01.PartOne(logger, in)
+	res, err := day_01.PartOne(logger, in)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
 
-	if n != 142 {
-		t.Errorf("got %d, expected %d", n, 142)
+	if res.N != 142 {
+		t.Errorf("got %d, expected %d", res.N, 142)
 	}
 }
 
@@ -38,12 +38,12 @@ xtwone3four
 zoneight234
 7pqrstsixteen`)
 
-	n, err := day_01.PartTwo(logger, in)
+	res, err := day_01.PartTwo(logger, in)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
 
-	if n != 281 {
-		t.Errorf("got %d, expected %d", n, 281)
+	if res.N != 281 {
+		t.Errorf("got %d, expected %d", res.N, 281)
 	}
 }
