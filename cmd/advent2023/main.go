@@ -22,6 +22,8 @@ func main() {
 		"day_2_2": day_02.PartTwo,
 		"day_3_1": day_03.PartOne,
 		"day_3_2": day_03.PartTwo,
+		"day_4_1": day_03.PartOne,
+		"day_4_2": day_03.PartTwo,
 	}
 
 	printSolutionNames := func() {
