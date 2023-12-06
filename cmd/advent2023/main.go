@@ -11,6 +11,7 @@ import (
 	"github.com/hugowetterberg/advent2023/day_02"
 	"github.com/hugowetterberg/advent2023/day_03"
 	"github.com/hugowetterberg/advent2023/day_05"
+	"github.com/hugowetterberg/advent2023/day_06"
 )
 
 type integerFunc func(logger *slog.Logger, r io.Reader) (*advent2023.IntegerResult, error)
@@ -27,6 +28,8 @@ func main() {
 		"day_4_2": day_03.PartTwo,
 		"day_5_1": day_05.PartOne,
 		"day_5_2": day_05.PartTwo,
+		"day_6_1": day_06.PartOne,
+		"day_6_2": day_06.PartTwo,
 	}
 
 	printSolutionNames := func() {
